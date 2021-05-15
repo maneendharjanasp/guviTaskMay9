@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        body  {
+            background-color: cornsilk;
+        }
+        .margin {
+            margin : 3%;
+        }
+        .cal-div{
+            background-color: #e6e6e6;
+            margin-top:7%;
+        }
+        .cal-inner-div{
+            margin-top: 10%;
+            margin-bottom: 10%;
+        }
+        .btn-circle {
+            width: 70px;
+            height: 70px;
+            padding: 10px 16px;
+            border-radius: 35px;
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin: 0px 20px 0px 20px;
+        }
+        #cal-data{
+            text-align: right;
+        }
+        #input-data{
+            text-align: right;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+        .row-1-margin {
+            margin-top: 70px;
+        }
+        .row-2-margin {
+            margin-top: 15px;
+        }
+        
+    </style>
+</head>
+<body>
+    <script>
+        var home = document.createElement("div");
+        var a = document.createElement("a");
+        a.innerText = "Homepage";
+        a.setAttribute("href","index.html");
+        home.append(a);
+        home.style.margin = "10px";
+        document.body.append(home);
+    </script>
+    <div class="margin">
+        <div class="row">
+            <div class="col col-4"></div>
+            <div class="col col-4 cal-div rounded-lg">
+                <div class="cal-inner-div">
+                    <div id="input-data"></div> 
+                    <div class="eq-margin"><input type="text" class="form-control" name="cal-data" id="cal-data" style="width: 100%;"></div> 
+                    <div class="row row-1-margin">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('7')">7</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('8')">8</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('9')">9</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-warning btn-circle" onclick="enterValue('+')">+</button>
+                        </div>
+                    </div>
+                    <div class="row row-2-margin">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('4')">4</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('5')">5</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('6')">6</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-warning btn-circle" onclick="enterValue('-')">-</button>
+                        </div>
+                    </div>
+                    <div class="row row-2-margin">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('1')">1</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('2')">2</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('3')">3</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-warning btn-circle" onclick="enterValue('*')">x</button>
+                        </div>
+                    </div>
+                    <div class="row row-2-margin">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-danger btn-circle" onclick="clearInput()">C</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-dark btn-circle" onclick="enterValue('0')">0</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-success btn-circle" onclick="solve()">=</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-warning btn-circle" onclick="enterValue('/')">/</button>
+                        </div>
+                    </div>
+                </div>
+                
+                  
+            </div>
+            <div class="col col-4"></div>
+        </div>
+    </div>
+    <script>
+        
+        function clearInput(){
+            document.getElementById("cal-data").value = "";
+            document.getElementById("input-data").innerText = "";
+        }
+        function enterValue(v){
+            document.getElementById("cal-data").value += v;
+        }
+        function solve(){
+            var exp = document.getElementById("cal-data").value;
+            try{
+                var result = eval(exp);
+                document.getElementById("cal-data").value = result;
+                document.getElementById("input-data").innerText = exp;
+            }
+            catch(e){
+                alert("Given input is not correct. Kindly enter correct format to calculate");
+                document.getElementById("cal-data").value = "";
+                document.getElementById("input-data").innerText = "";
+            }
+            
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>
